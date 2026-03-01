@@ -1,0 +1,4 @@
+initial_cash: 10.0
+leverage: 100
+stop_loss_pct: 0.05  # 5% stop loss
+risk_per_trade_pct: 0.02  # risk 2% of capital per trade
