@@ -25,6 +25,14 @@ class MarginAccount:
         # Let's compute equity first.
         equity = self._calculate_equity({symbol: price})  # pass current prices (only this symbol for now)
         buying_power = equity * self.leverage
+        self.trade_log.append({
+    'date': None,  # we'll fill later in backtester
+    'symbol': symbol,
+    'action': 'BUY',
+    'shares': shares,
+    'price': price,
+    'cost': cost
+})
 
         if cost > buying_power:
             print(f"Cannot buy {shares} shares of {symbol} for ${cost:.2f}. Buying power: ${buying_power:.2f}")
@@ -61,6 +69,14 @@ class MarginAccount:
         if symbol not in self.positions:
             print(f"No position in {symbol}")
             return False
+            self.trade_log.append({
+    'date': None,  # we'll fill later in backtester
+    'symbol': symbol,
+    'action': 'BUY',
+    'shares': shares,
+    'price': price,
+    'cost': cost
+})
 
         pos = self.positions[symbol]
         if shares is None:
