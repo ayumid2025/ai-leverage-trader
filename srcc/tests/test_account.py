@@ -2,6 +2,23 @@ import sys
 sys.path.append('src')  # allow importing from src folder
 from account import MarginAccount
 
+from data_fetcher import fetch_multiple
+import yaml
+
+# Load config
+with open('config/config.yaml', 'r') as f:
+    config = yaml.safe_load(f)
+
+symbols = config.get('symbols', ['AAPL'])
+data = fetch_multiple(symbols, period="1mo")
+
+for sym, df in data.items():
+    if df.empty:
+        print(f"❌ No data for {sym}")
+    else:
+        print(f"✅ {sym}: {len(df)} days, from {df.index[0].date()} to {df.index[-1].date()}")
+
+
 def test_buy_sell():
     # Initialize account with $10, 100x leverage
     acc = MarginAccount(initial_cash=10.0, leverage=100, maintenance_margin=0.25)
