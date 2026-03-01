@@ -3,3 +3,8 @@ leverage: 100
 maintenance_margin: 0.25   # 25% maintenance margin requirement
 stop_loss_pct: 0.05
 risk_per_trade_pct: 0.02
+symbols:
+  - AAPL
+  - MSFT
+  - TSLA
+  - AMZN
